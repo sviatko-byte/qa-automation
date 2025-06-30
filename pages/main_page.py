@@ -1,22 +1,31 @@
+import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-
 class MainPage:
-    search_field_locator = (By.CSS_SELECTOR, "input[placeholder='Я шукаю...']")
-    search_btn_locator = (By.XPATH, "//button[contains(text(),'Знайти')]")
+    sign_in_btn = (By.CSS_SELECTOR, "a.btn.btn-s")
+    email_field = (By.CSS_SELECTOR, "#email")
+    password_field = (By.CSS_SELECTOR, "#password")
+    sign_in = (By.CSS_SELECTOR, "button.btn")
+
+
 
     def __init__(self, driver: WebDriver):
         self.driver = driver
-        self.wait = WebDriverWait(driver, 5)
+        self.wait = WebDriverWait(driver, 10)
 
-    def fill_search_field(self, text):
-        field = self.wait.until(EC.visibility_of_element_located(self.search_field_locator))
-        field.clear()
-        field.send_keys(text)
+    def click_on_sign_in_btn(self):
+        self.wait.until(EC.visibility_of_element_located(self.sign_in_btn)).click()
 
-    def click_search_button(self):
-        button = self.wait.until(EC.element_to_be_clickable(self.search_btn_locator))
-        button.click()
+    def fill_email(self, text):
+        self.wait.until(EC.visibility_of_element_located(self.email_field)).send_keys(text)
+
+    def fill_password(self, text):
+        self.wait.until(EC.visibility_of_element_located(self.password_field)).send_keys(text)
+
+    def click_on_sign_in(self):
+        self.wait.until(EC.visibility_of_element_located(self.sign_in)).click()
+
+
