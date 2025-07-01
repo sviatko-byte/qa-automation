@@ -17,4 +17,5 @@ def test_search_and_login(driver):
     main_page.fill_password("Taras1994!")
     main_page.click_on_sign_in()
     time.sleep(3)
+    main_page.log_out()
 

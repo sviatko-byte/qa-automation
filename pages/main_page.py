@@ -9,8 +9,12 @@ class MainPage:
     email_field = (By.CSS_SELECTOR, "#email")
     password_field = (By.CSS_SELECTOR, "#password")
     sign_in = (By.CSS_SELECTOR, "button.btn")
+    go_out = (By.CSS_SELECTOR,"button[aria-label='User menu']")
+    out_btn = (By.CSS_SELECTOR,"a[title='Выйти']")
 
-
+    def log_out(self):
+        self.wait.until(EC.visibility_of_element_located(self.go_out)).click()
+        self.wait.until(EC.visibility_of_element_located(self.out_btn)).click()
 
     def __init__(self, driver: WebDriver):
         self.driver = driver
