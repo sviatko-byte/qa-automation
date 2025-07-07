@@ -1,8 +1,11 @@
-import time
+from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+
+from tests.conftest import driver
+
 
 class MainPage:
     sign_in_btn = (By.CSS_SELECTOR, "a.btn.btn-s")
@@ -12,9 +15,11 @@ class MainPage:
     go_out = (By.CSS_SELECTOR,"button[aria-label='User menu']")
     out_btn = (By.CSS_SELECTOR,"a[title='Выйти']")
 
-    def log_out(self):
-        self.wait.until(EC.visibility_of_element_located(self.go_out)).click()
-        self.wait.until(EC.visibility_of_element_located(self.out_btn)).click()
+    def log_out(self, driver):
+       go_out_window = self.wait.until(EC.visibility_of_element_located(self.go_out))
+       actions = ActionChains(driver)
+       actions.move_to_element(go_out_window).perform()
+       self.wait.until(EC.visibility_of_element_located(self.out_btn)).click()
 
     def __init__(self, driver: WebDriver):
         self.driver = driver
