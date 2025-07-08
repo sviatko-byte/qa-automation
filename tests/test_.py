@@ -27,13 +27,14 @@ def test_search_and_login(driver):
 def test_different_click_on_the_buttons(driver):
     base_page = BasePage(driver)
     base_page.open('https://demoqa.com/buttons')
-""
+
     buttons_page = ButtonsPage(driver)
     # Виконуємо подвійний клік
     buttons_page.double_click()
     buttons_page.should_display_double_click_message('You have done a double click')
     buttons_page.right_click()
     buttons_page.should_display_right_click_message('You have done a right click')
+
 
 
 
