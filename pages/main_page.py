@@ -21,7 +21,7 @@ class MainPage:
        actions.move_to_element(go_out_window).perform()
        self.wait.until(EC.visibility_of_element_located(self.out_btn)).click()
 
-    def __init__(self, driver: WebDriver) -> None:
+    def __init__(self, driver):
         self.driver = driver
         self.wait = WebDriverWait(driver, 10)
 

@@ -9,6 +9,7 @@ class BasePage:
         self.driver = driver
 
     def open(self, url):
+        self.driver.maximize_window()
         self.driver.get(url)
 
     def element_is_visible(self, locator, timeout=5):
