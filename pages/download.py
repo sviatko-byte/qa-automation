@@ -4,12 +4,14 @@ from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+from pages.base_page import BasePage
 from tests.conftest import driver
 
 class UploadAndDownloadPage:
     download_btn = (By.ID, "downloadButton")
     upload_locators = (By.ID,"uploadFile")
     text_locators = (By.ID,"uploadedFilePath")
+
 
 
     def __init__(self, driver):
@@ -24,3 +26,6 @@ class UploadAndDownloadPage:
 
     def should_be_visible_success_upload_message(self):
         self.wait.until(EC.visibility_of_element_located(self.text_locators))
+
+
+

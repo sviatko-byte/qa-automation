@@ -1,4 +1,5 @@
 import os
+from random import random
 
 from selenium import webdriver
 import time
@@ -11,9 +12,12 @@ from data.constans import DefaultConstants
 from pages.base_page import BasePage
 from pages.buttons_page import ButtonsPage
 from pages.download import UploadAndDownloadPage
+from pages.dynamic_properties_page import DynamicPropertiesPage
+from pages.form_page import FormPage
 from pages.links import LinksPage
 from pages.main_page import MainPage
-from utils.helpers import is_file_downloaded, create_random_file
+from utils.helpers import is_file_downloaded, create_random_file, generate_random_name, generate_random_email, \
+    generate_random_numbers
 
 driver = webdriver.Chrome()
 base_page = BasePage(driver)
@@ -21,6 +25,8 @@ main_page = MainPage(driver)
 buttons_page = ButtonsPage(driver)
 links_page = LinksPage(driver)
 download_page = UploadAndDownloadPage(driver)
+dynamic_properties_page = DynamicPropertiesPage(driver)
+formpage = FormPage(driver)
 
 
 def test_search_and_login():
@@ -64,6 +70,23 @@ def test_upload():
     path = create_random_file(DefaultConstants.download_dir)
     download_page.upload_file(path)
     download_page.should_be_visible_success_upload_message()
+
+def test_dynamic_properties_page():
+    base_page.open('https://demoqa.com/dynamic-properties')
+    dynamic_properties_page.check_changed_color()
+
+
+
+def test_form():
+    base_page.open('https://demoqa.com/automation-practice-form')
+    random_name = generate_random_name(length=6)
+    random_email = generate_random_email( length=8)
+    random_mobile = generate_random_numbers()
+
+    formpage.fill_form_fields(name=random_name, last_name=random_name)
+    formpage.fill_random_email(random_email)
+    formpage.fill_random_numbers(random_mobile)
+
 
 
 
