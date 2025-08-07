@@ -17,9 +17,10 @@ from pages.form_page import FormPage
 from pages.links import LinksPage
 from pages.main_page import MainPage
 from utils.helpers import is_file_downloaded, create_random_file, generate_random_name, generate_random_email, \
-    generate_random_numbers
+    generate_random_numbers, generate_random_mobile
 
 driver = webdriver.Chrome()
+
 base_page = BasePage(driver)
 main_page = MainPage(driver)
 buttons_page = ButtonsPage(driver)
@@ -27,6 +28,7 @@ links_page = LinksPage(driver)
 download_page = UploadAndDownloadPage(driver)
 dynamic_properties_page = DynamicPropertiesPage(driver)
 formpage = FormPage(driver)
+
 
 
 def test_search_and_login():
@@ -81,11 +83,10 @@ def test_form():
     base_page.open('https://demoqa.com/automation-practice-form')
     random_name = generate_random_name(length=6)
     random_email = generate_random_email( length=8)
-    random_mobile = generate_random_numbers()
+    random_mobile = generate_random_mobile()
 
-    formpage.fill_form_fields(name=random_name, last_name=random_name)
-    formpage.fill_random_email(random_email)
-    formpage.fill_random_numbers(random_mobile)
+    formpage.fill_form_fields(name=random_name, last_name=random_name, email=random_email, mobile=random_mobile)
+    driver.quit()
 
 
 

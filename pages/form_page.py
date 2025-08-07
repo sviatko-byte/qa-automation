@@ -8,20 +8,19 @@ from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-from tests.conftest import driver
 
 
 class FormPage():
 
     def __init__(self, driver: WebDriver):
-        self.driver = driver
         self.wait = WebDriverWait(driver, 5)
 
-    FIRST_NAME = (By.CSS_SELECTOR, "input[id='firstName']")
-    LAST_NAME = (By.CSS_SELECTOR, "input[id='lastName']")
-    EMAIL = (By.CSS_SELECTOR, "input[id='userEmail']")
-    GENDER = (By.CSS_SELECTOR, f"div[class*='custom-control'] input[id='gender-radio-{random.randint(1, 3)}']")
-    MOBILE = (By.CSS_SELECTOR, "userNumber")
+    FIRST_NAME = (By.ID, "firstName")
+    LAST_NAME = (By.ID, "lastName")
+    EMAIL = (By.ID, "userEmail")
+    GENDER = (By.CSS_SELECTOR, f"label[for='gender-radio-{random.randint(1, 3)}']")
+    #GENDER = (By.CSS_SELECTOR, "label[for='gender-radio-2']")
+    MOBILE = (By.ID, "userNumber")
     DATE_OF_BIRTH = (By.CSS_SELECTOR, "dateOfBirthInput")
     SUBJECT = (By.CSS_SELECTOR, "subjectsInput")
     HOBBIES = (By.CSS_SELECTOR, f"//input[@id='hobbies-checkbox-{random.randint(1, 3)}']")
@@ -36,13 +35,11 @@ class FormPage():
 
 
 
-    def fill_form_fields(self, name, last_name, ):
+    def fill_form_fields(self, name, last_name, email, mobile):
        self.wait.until(EC.visibility_of_element_located(self.FIRST_NAME)).send_keys(name)
        self.wait.until(EC.visibility_of_element_located(self.LAST_NAME)).send_keys(last_name)
+       self.wait.until(EC.visibility_of_element_located(self.EMAIL)).send_keys(email)
+       self.wait.until(EC.visibility_of_element_located(self.MOBILE)).send_keys(mobile)
+       self.wait.until(EC.visibility_of_element_located(self.GENDER)).click()
 
-    def fill_random_email(self,email):
-        self.wait.until(EC.visibility_of_element_located(self.EMAIL)).send_keys(email)
-
-    def fill_random_numbers(self,mobile):
-        self.wait.until(EC.visibility_of_element_located(self.MOBILE)).send_keys(mobile)
 
