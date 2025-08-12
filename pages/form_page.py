@@ -1,15 +1,8 @@
-import email
-import os
 import random
-from os import path
-from selenium.webdriver.remote.webdriver import WebDriver
 
-from pywin.framework.intpyapp import lastLocateFileName
-from selenium.webdriver import ActionChains, Keys
-from selenium.webdriver.common import keys
+from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
-from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -19,6 +12,7 @@ class FormPage():
 
     def __init__(self, driver: WebDriver):
         self.wait = WebDriverWait(driver, 5)
+        self.driver = driver
 
     FIRST_NAME = (By.ID, "firstName")
     LAST_NAME = (By.ID, "lastName")
@@ -45,6 +39,10 @@ class FormPage():
        self.wait.until(EC.visibility_of_element_located(self.LAST_NAME)).send_keys(last_name)
        self.wait.until(EC.visibility_of_element_located(self.EMAIL)).send_keys(email)
        self.wait.until(EC.visibility_of_element_located(self.MOBILE)).send_keys(mobile)
+
+       element = self.wait.until(EC.visibility_of_element_located(self.CURRENT_ADDRESS))
+       self.driver.execute_script("arguments[0].scrollIntoView(true);", element)
+
        self.wait.until(EC.visibility_of_element_located(self.GENDER)).click()
        self.wait.until(EC.visibility_of_element_located(self.HOBBIES)).click()
        self.wait.until(EC.visibility_of_element_located(self.SUBJECT)).send_keys('Maths')
@@ -53,6 +51,12 @@ class FormPage():
            .send_keys(r"C:\Users\Sviatko\Desktop\Англійська\зображення_viber_2025-07-24_13-35-51-948.jpg")
        self.wait.until(EC.visibility_of_element_located(self.CURRENT_ADDRESS)).send_keys('Святіко')
        self.wait.until(EC.presence_of_element_located(self.SELECT_STATE)).click()
+
+
+
+
+
+
 
     # def select_state(self, state_name: str):
     #     # Клік по контейнеру дропдауну
