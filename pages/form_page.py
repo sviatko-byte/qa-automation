@@ -26,7 +26,7 @@ class FormPage():
     FILE_INPUT = (By.ID, "uploadPicture")
     CURRENT_ADDRESS = (By.ID, "currentAddress")
     SELECT_STATE = (By.ID, "state")
-    STATE_INPUT = (By.CSS_SELECTOR, "react-select-3-input")
+    STATE_INPUT = (By.ID, "react-select-3-input")
     SELECT_CITY = (By.CSS_SELECTOR, "city")
     CITY_INPUT = (By.CSS_SELECTOR, "react-select-4-input")
     SUBMIT = (By.CSS_SELECTOR, "submit")
@@ -50,7 +50,7 @@ class FormPage():
        self.wait.until(EC.presence_of_element_located(self.FILE_INPUT)) \
            .send_keys(r"C:\Users\Sviatko\Desktop\Англійська\зображення_viber_2025-07-24_13-35-51-948.jpg")
        self.wait.until(EC.visibility_of_element_located(self.CURRENT_ADDRESS)).send_keys('Святіко')
-       self.wait.until(EC.presence_of_element_located(self.SELECT_STATE)).click()
+       # self.wait.until(EC.presence_of_element_located(self.SELECT_STATE)).click()
 
 
 
@@ -58,16 +58,19 @@ class FormPage():
 
 
 
-    # def select_state(self, state_name: str):
-    #     # Клік по контейнеру дропдауну
-    #     self.wait.until(EC.element_to_be_clickable(self.SELECT_STATE)).click()
-    #
-    #     # Ввести значення в інпут
-    #     self.wait.until(EC.visibility_of_element_located(self.STATE_INPUT)).send_keys("Haryana")
-    #
-    #     # Підтвердити вибір
-    #     self.wait.until(EC.visibility_of_element_located(self.STATE_INPUT)).send_keys(Keys.ENTER)
-    #
-    #
-    #
+
+
+
+    def select_state(self, state_name: str):
+        # Клік по контейнеру дропдауну
+        self.wait.until(EC.element_to_be_clickable(self.SELECT_STATE)).click()
+
+        # Ввести значення в інпут
+        self.wait.until(EC.visibility_of_element_located(self.STATE_INPUT)).send_keys(state_name)
+
+        # Підтвердити вибір
+        self.wait.until(EC.visibility_of_element_located(self.STATE_INPUT)).send_keys(Keys.ENTER)
+
+
+
 
