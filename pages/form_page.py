@@ -27,9 +27,9 @@ class FormPage():
     CURRENT_ADDRESS = (By.ID, "currentAddress")
     SELECT_STATE = (By.ID, "state")
     STATE_INPUT = (By.ID, "react-select-3-input")
-    SELECT_CITY = (By.CSS_SELECTOR, "city")
-    CITY_INPUT = (By.CSS_SELECTOR, "react-select-4-input")
-    SUBMIT = (By.CSS_SELECTOR, "submit")
+    SELECT_CITY = (By.ID, "city")
+    CITY_INPUT = (By.ID, "react-select-4-input")
+    SUBMIT = (By.ID, "submit")
 
 
 
@@ -61,6 +61,7 @@ class FormPage():
 
 
 
+
     def select_state(self, state_name: str):
         # Клік по контейнеру дропдауну
         self.wait.until(EC.element_to_be_clickable(self.SELECT_STATE)).click()
@@ -70,6 +71,21 @@ class FormPage():
 
         # Підтвердити вибір
         self.wait.until(EC.visibility_of_element_located(self.STATE_INPUT)).send_keys(Keys.ENTER)
+
+    def select_city(self, state_name: str):
+        # Клік по контейнеру дропдауну
+        self.wait.until(EC.element_to_be_clickable(self.SELECT_CITY)).click()
+
+        # Ввести значення в інпут
+        self.wait.until(EC.visibility_of_element_located(self.CITY_INPUT)).send_keys(state_name)
+
+        # Підтвердити вибір
+        self.wait.until(EC.visibility_of_element_located(self.CITY_INPUT)).send_keys(Keys.ENTER)
+
+    def click_on_submit_btn(self):
+        self.wait.until(EC.element_to_be_clickable(self.SUBMIT)).click()
+
+
 
 
 

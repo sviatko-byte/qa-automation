@@ -86,6 +86,10 @@ def test_form():
     random_mobile = generate_random_mobile()
 
     formpage.fill_form_fields(name=random_name, last_name=random_name, email=random_email, mobile=random_mobile)
+    formpage.select_state('NCR')
+    formpage.select_city('Noida')
+    formpage.click_on_submit_btn()
+
     driver.quit()
 
 
