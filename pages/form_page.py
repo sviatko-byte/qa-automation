@@ -47,8 +47,7 @@ class FormPage():
        self.wait.until(EC.visibility_of_element_located(self.HOBBIES)).click()
        self.wait.until(EC.visibility_of_element_located(self.SUBJECT)).send_keys('Maths')
        self.wait.until(EC.visibility_of_element_located(self.SUBJECT)).send_keys(Keys.RETURN)
-       self.wait.until(EC.presence_of_element_located(self.FILE_INPUT)) \
-           .send_keys(r"C:\Users\Sviatko\Desktop\Англійська\зображення_viber_2025-07-24_13-35-51-948.jpg")
+       self.wait.until(EC.presence_of_element_located(self.FILE_INPUT)).send_keys(r"C:\Users\dewif\OneDrive\Робочий стіл\Англійська\зображення_viber_2025-08-16_13-21-12-947.jpg")
        self.wait.until(EC.visibility_of_element_located(self.CURRENT_ADDRESS)).send_keys('Святіко')
        # self.wait.until(EC.presence_of_element_located(self.SELECT_STATE)).click()
 

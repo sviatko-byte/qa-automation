@@ -10,6 +10,7 @@ from selenium.webdriver.common.by import By
 
 from data.constans import DefaultConstants
 from pages.base_page import BasePage
+from pages.browser_window import  BrowserWindowPage
 from pages.buttons_page import ButtonsPage
 from pages.download import UploadAndDownloadPage
 from pages.dynamic_properties_page import DynamicPropertiesPage
@@ -28,7 +29,7 @@ links_page = LinksPage(driver)
 download_page = UploadAndDownloadPage(driver)
 dynamic_properties_page = DynamicPropertiesPage(driver)
 formpage = FormPage(driver)
-
+browser_window = BrowserWindowPage(driver)
 
 
 def test_search_and_login():
@@ -92,6 +93,15 @@ def test_form():
 
     driver.quit()
 
+
+def test_browser_window():
+    base_page.open('https://demoqa.com/browser-windows')
+    browser_window.click_on_submit_btn()
+    browser_window.switch_to_window(1)
+    browser_window.get_page_title()
+    browser_window.switch_to_window(0)
+    browser_window.click_on_new_window_btn()
+    driver.quit()
 
 
 
