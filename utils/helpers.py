@@ -3,6 +3,7 @@ import time
 import random
 import string
 
+
 def is_file_downloaded(file_path, timeout=10):
     """
     Чекає до `timeout` секунд, щоб перевірити, чи файл з'явився.

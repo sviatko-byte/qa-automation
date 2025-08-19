@@ -6,7 +6,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 from pages.base_page import BasePage
-from tests.conftest import driver
 
 class DynamicPropertiesPage:
 
