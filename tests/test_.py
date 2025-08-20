@@ -1,14 +1,10 @@
 import os
-from random import random
 
 from selenium import webdriver
 import time
-
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
-
 from data.constans import DefaultConstants
+from pages import alerts
+from pages.alerts import Alerts
 from pages.base_page import BasePage
 from pages.browser_window import  BrowserWindowPage
 from pages.buttons_page import ButtonsPage
@@ -30,7 +26,7 @@ download_page = UploadAndDownloadPage(driver)
 dynamic_properties_page = DynamicPropertiesPage(driver)
 formpage = FormPage(driver)
 browser_window = BrowserWindowPage(driver)
-
+alerts_page = Alerts(driver)
 
 def test_search_and_login():
     base_page.open('https://coursehunter.net/')
@@ -106,7 +102,13 @@ def test_browser_window():
     driver.quit()
 
 
-
+def test_alerts_page():
+    base_page.open('https://demoqa.com/alerts')
+    alerts_text = alerts_page.check_see_alert()
+    alerts_page.accept_alert()
+    assert alerts_text == 'You clicked a button'
+    alerts_text = alerts_page.check_alert_appear_5_sec()
+    assert alerts_text == 'This alert appeared after 5 seconds'
 
 
 
