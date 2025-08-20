@@ -101,6 +101,8 @@ def test_browser_window():
     browser_window.get_page_title()
     browser_window.switch_to_window(0)
     browser_window.click_on_new_window_btn()
+    browser_window.switch_to_window(1)
+    browser_window.get_on_new_window_title()
     driver.quit()
 
 

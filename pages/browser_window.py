@@ -11,7 +11,7 @@ class BrowserWindowPage:
     NEW_TAB_BUTTON = 'tabButton'
     TITLE = 'sampleHeading'
     WINDOW_BUTTON = 'windowButton'
-
+    WINDOW_TITLE = 'sampleHeading'
 
 
 
@@ -27,3 +27,7 @@ class BrowserWindowPage:
 
     def click_on_new_window_btn(self):
         self.driver.find_element(By.ID, self.WINDOW_BUTTON).click()
+
+    def get_on_new_window_title(self):
+        text_on_title = self.driver.find_element(By.ID, self.WINDOW_TITLE).text
+        print(text_on_title)
