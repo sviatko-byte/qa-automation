@@ -1,5 +1,6 @@
 import time
 
+from selenium.webdriver.common import alert
 from selenium.webdriver.common.by import By
 
 
@@ -13,6 +14,7 @@ class Alerts:
     SEE_ALERT_BUTTON = 'alertButton'
     APPEAR_ALERT_5SEC_BUTTON = 'timerAlertButton'
     CONFIRM_BOX = 'confirmButton'
+    CONFIRM_RESULT = 'confirmResult'
     PROMPT_BOX = 'promtButton'
 
 
@@ -31,3 +33,12 @@ class Alerts:
         alert_window = self.driver.switch_to.alert
         print(alert_window.text)
         return alert_window.text
+
+    def check_confirm_box(self):
+        self.driver.find_element(By.ID, self.CONFIRM_BOX).click()
+        alert_window = self.driver.switch_to.alert
+        alert_window.accept()
+        text_result = self.driver.find_element(By.ID, self.CONFIRM_RESULT).text
+        return text_result
+
+

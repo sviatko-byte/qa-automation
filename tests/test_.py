@@ -109,6 +109,10 @@ def test_alerts_page():
     assert alerts_text == 'You clicked a button'
     alerts_text = alerts_page.check_alert_appear_5_sec()
     assert alerts_text == 'This alert appeared after 5 seconds'
+    alerts_page.accept_alert()
+    text_result = alerts_page.check_confirm_box()
+    assert text_result == 'You selected Ok'
+
 
 
 
