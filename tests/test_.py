@@ -11,8 +11,10 @@ from pages.dynamic_properties_page import DynamicPropertiesPage
 from pages.form_page import FormPage
 from pages.links import LinksPage
 from pages.main_page import MainPage
+from pages.nested_frames import NestedFramesPage
 from utils.helpers import is_file_downloaded, create_random_file, generate_random_name, generate_random_email, generate_random_mobile
 from pages.frames import Frames
+
 
 driver = webdriver.Chrome()
 
@@ -26,7 +28,7 @@ form_page = FormPage(driver)
 browser_window = BrowserWindowPage(driver)
 alerts_page = Alerts(driver)
 frames_page = Frames(driver)
-
+nested_frames_page = NestedFramesPage(driver)
 
 def test_search_and_login():
     base_page.open(Urls.COURSEHUNTER)
@@ -115,3 +117,8 @@ def test_frames_page():
     result_frame1 = frames_page.check_frames("frame1 ")
     result_frame2 = frames_page.check_frames("frame2 ")
     print(result_frame1, result_frame2)
+
+def test_nested_frames_page():
+    base_page.open(Urls.NESTED_FRAMES)
+    parent_text , child_text = nested_frames_page.check_nested_frames_page()
+    print(parent_text, child_text)

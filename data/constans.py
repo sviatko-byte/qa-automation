@@ -14,3 +14,4 @@ class Urls:
     BROWSER_WINDOW = "https://demoqa.com/browser-windows"
     ALERTS = "https://demoqa.com/alerts"
     FRAMES = "https://demoqa.com/frames"
+    NESTED_FRAMES = "https://demoqa.com/nestedframes"
