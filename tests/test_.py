@@ -11,6 +11,7 @@ from pages.dynamic_properties_page import DynamicPropertiesPage
 from pages.form_page import FormPage
 from pages.links import LinksPage
 from pages.main_page import MainPage
+from pages.modal_dialogs import ModalDialogsPage
 from pages.nested_frames import NestedFramesPage
 from utils.helpers import is_file_downloaded, create_random_file, generate_random_name, generate_random_email, generate_random_mobile
 from pages.frames import Frames
@@ -29,6 +30,7 @@ browser_window = BrowserWindowPage(driver)
 alerts_page = Alerts(driver)
 frames_page = Frames(driver)
 nested_frames_page = NestedFramesPage(driver)
+modal_dialogs_page = ModalDialogsPage(driver)
 
 def test_search_and_login():
     base_page.open(Urls.COURSEHUNTER)
@@ -122,3 +124,8 @@ def test_nested_frames_page():
     base_page.open(Urls.NESTED_FRAMES)
     parent_text , child_text = nested_frames_page.check_nested_frames_page()
     print(parent_text, child_text)
+
+def test_modal_dalogs_page():
+    base_page.open(Urls.MODAL_DIALOGS)
+    ModalDialogsPage.small_modal_modal_clic
+
