@@ -13,3 +13,4 @@ class Urls:
     FORM = "https://demoqa.com/automation-practice-form"
     BROWSER_WINDOW = "https://demoqa.com/browser-windows"
     ALERTS = "https://demoqa.com/alerts"
+    FRAMES = "https://demoqa.com/frames"
