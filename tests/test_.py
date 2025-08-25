@@ -13,6 +13,7 @@ from pages.links import LinksPage
 from pages.main_page import MainPage
 from pages.modal_dialogs import ModalDialogsPage
 from pages.nested_frames import NestedFramesPage
+from pages.widgests import Widgets
 from utils.helpers import is_file_downloaded, create_random_file, generate_random_name, generate_random_email, generate_random_mobile
 from pages.frames import Frames
 
@@ -31,6 +32,7 @@ alerts_page = Alerts(driver)
 frames_page = Frames(driver)
 nested_frames_page = NestedFramesPage(driver)
 modal_dialogs_page = ModalDialogsPage(driver)
+widgets_page = Widgets(driver)
 
 def test_search_and_login():
     base_page.open(Urls.COURSEHUNTER)
@@ -131,3 +133,8 @@ def test_modal_dialogs_page():
     print(small)
     print(large)
 
+def test_widgets_page():
+    base_page.open(Urls.WIDGETS)
+    widgets_page.check_accordian(accordian_num='first')
+    widgets_page.check_accordian(accordian_num='second')
+    widgets_page.check_accordian(accordian_num='third')

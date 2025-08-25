@@ -16,3 +16,4 @@ class Urls:
     FRAMES = "https://demoqa.com/frames"
     NESTED_FRAMES = "https://demoqa.com/nestedframes"
     MODAL_DIALOGS = "https://demoqa.com/modal-dialogs"
+    WIDGETS = "https://demoqa.com/accordian"
