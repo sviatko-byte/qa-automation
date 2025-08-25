@@ -125,7 +125,9 @@ def test_nested_frames_page():
     parent_text , child_text = nested_frames_page.check_nested_frames_page()
     print(parent_text, child_text)
 
-def test_modal_dalogs_page():
+def test_modal_dialogs_page():
     base_page.open(Urls.MODAL_DIALOGS)
-    ModalDialogsPage.small_modal_modal_clic
+    small , large = modal_dialogs_page.small_modal_modal()
+    print(small)
+    print(large)
 
