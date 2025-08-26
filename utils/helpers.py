@@ -17,6 +17,7 @@ def is_file_downloaded(file_path, timeout=10):
         time.sleep(1)
     return False
 
+
 def create_random_file(directory='.', file_extension='.txt', content_length=100):
     # Генеруємо випадкове ім’я файлу
     filename = ''.join(random.choices(string.ascii_letters + string.digits, k=10)) + file_extension
@@ -32,22 +33,26 @@ def create_random_file(directory='.', file_extension='.txt', content_length=100)
     print(f"✅ Створено файл: {filepath}")
     return filepath
 
+
 def generate_random_name(length):
     # Перша літера велика, далі малі, наприклад: "Povika"
     first_letter = random.choice(string.ascii_uppercase)
-    other_letters = ''.join(random.choices(string.ascii_lowercase, k=length-1))
+    other_letters = ''.join(random.choices(string.ascii_lowercase, k=length - 1))
     return first_letter + other_letters
 
-def generate_random_email( length=8):
-        # Генеруємо випадкове ім’я користувача
-        username = ''.join(random.choices(string.ascii_lowercase + string.digits, k=length))
-        # Можна використати список доменів для реалізму
-        domains = ["example.com", "testmail.com", "mailinator.com"]
-        domain = random.choice(domains)
-        # Формуємо email
-        return f"{username}@{domain}"
+
+def generate_random_email(length=8):
+    # Генеруємо випадкове ім’я користувача
+    username = ''.join(random.choices(string.ascii_lowercase + string.digits, k=length))
+    # Можна використати список доменів для реалізму
+    domains = ["example.com", "testmail.com", "mailinator.com"]
+    domain = random.choice(domains)
+    # Формуємо email
+    return f"{username}@{domain}"
+
 
 import random
+
 
 def generate_random_numbers(count: int = 10, min_value: int = 0, max_value: int = 100) -> list[int]:
     """
@@ -69,3 +74,23 @@ def generate_random_mobile(length: int = 10) -> str:
     :return: рядок з цифрами (номер)
     """
     return ''.join(random.choices("0123456789", k=length))
+
+
+def get_random_color_name():
+    colors = [
+        "Red",
+        "Blue",
+        "Green",
+        "Yellow",
+        "Purple",
+        "Black",
+        "White",
+        "Violet",
+        "Indigo",
+        "Magenta",
+        "Aqua"
+    ]
+    return random.choice(colors)
+
+# приклад використання
+print(get_random_color_name())

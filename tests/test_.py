@@ -1,8 +1,10 @@
 import os
+from idlelib.autocomplete import AutoComplete
 from selenium import webdriver
 import time
 from data.constans import DefaultConstants, Urls
 from pages.alerts import Alerts
+from pages.auto_complete import Auto
 from pages.base_page import BasePage
 from pages.browser_window import  BrowserWindowPage
 from pages.buttons_page import ButtonsPage
@@ -33,6 +35,8 @@ frames_page = Frames(driver)
 nested_frames_page = NestedFramesPage(driver)
 modal_dialogs_page = ModalDialogsPage(driver)
 widgets_page = Widgets(driver)
+auto_complete = Auto(driver)
+
 
 def test_search_and_login():
     base_page.open(Urls.COURSEHUNTER)
@@ -138,3 +142,14 @@ def test_widgets_page():
     widgets_page.check_accordian(accordian_num='first')
     widgets_page.check_accordian(accordian_num='second')
     widgets_page.check_accordian(accordian_num='third')
+
+def test_autocomplete_page():
+    base_page.open(Urls.AUTO)
+    auto_complete.fill_input_multi()
+    auto_complete.fill_input_multi()
+    auto_complete.fill_input_multi()
+    count_after, count_before = auto_complete.remove_value_from_multi()
+
+    print(f"Before removal: {count_before}, After removal: {count_after}")
+
+
