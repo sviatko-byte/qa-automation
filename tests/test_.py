@@ -1,5 +1,4 @@
 import os
-from idlelib.autocomplete import AutoComplete
 from selenium import webdriver
 import time
 from data.constans import DefaultConstants, Urls
@@ -8,6 +7,7 @@ from pages.auto_complete import Auto
 from pages.base_page import BasePage
 from pages.browser_window import  BrowserWindowPage
 from pages.buttons_page import ButtonsPage
+from pages.date_picker import DatePicker
 from pages.download import UploadAndDownloadPage
 from pages.dynamic_properties_page import DynamicPropertiesPage
 from pages.form_page import FormPage
@@ -36,6 +36,8 @@ nested_frames_page = NestedFramesPage(driver)
 modal_dialogs_page = ModalDialogsPage(driver)
 widgets_page = Widgets(driver)
 auto_complete = Auto(driver)
+date_picker = DatePicker(driver)
+
 
 
 def test_search_and_login():
@@ -152,4 +154,11 @@ def test_autocomplete_page():
 
     print(f"Before removal: {count_before}, After removal: {count_after}")
 
+def test_date_picker_page():
+    base_page.open(Urls.DATE_PICKER)
+    random_date = date_picker.select_date()
+    date_input_value = date_picker.element_is_visible(date_picker.DATE_INPUT).get_attribute("value")
+    expected_date_str = random_date.strftime("%m/%d/%Y")
+    print(f"Expected: {expected_date_str}, Got from input: {date_input_value}")
+    assert date_input_value == expected_date_str, "Дата у полі не співпадає з обраною!"
 

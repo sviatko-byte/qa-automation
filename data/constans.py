@@ -18,3 +18,4 @@ class Urls:
     MODAL_DIALOGS = "https://demoqa.com/modal-dialogs"
     WIDGETS = "https://demoqa.com/accordian"
     AUTO = "https://demoqa.com/auto-complete"
+    DATE_PICKER = "https://demoqa.com/date-picker"
