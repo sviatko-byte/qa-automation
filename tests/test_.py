@@ -161,4 +161,19 @@ def test_date_picker_page():
     expected_date_str = random_date.strftime("%m/%d/%Y")
     print(f"Expected: {expected_date_str}, Got from input: {date_input_value}")
     assert date_input_value == expected_date_str, "Дата у полі не співпадає з обраною!"
+    driver.quit()
 
+def test_date_and_time_picker():
+    base_page.open(Urls.DATE_TIME_PICKER)
+    random_date, random_time = date_picker.select_date_and_time()
+    date_input_value = date_picker.element_is_visible(date_picker.DATE_ADD_TIME_INPUT).get_attribute("value")
+
+    # перевірка, що рік і місяць правильні
+    assert str(random_date.year) in date_input_value
+    assert random_date.strftime("%B") in date_input_value  # наприклад "March"
+
+    # перевірка, що день правильний
+    assert str(random_date.day) in date_input_value
+
+    # перевірка, що час правильний (має збігатися з тим, що вибрали)
+    assert random_time in date_input_value

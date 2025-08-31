@@ -19,3 +19,4 @@ class Urls:
     WIDGETS = "https://demoqa.com/accordian"
     AUTO = "https://demoqa.com/auto-complete"
     DATE_PICKER = "https://demoqa.com/date-picker"
+    DATE_TIME_PICKER = "https://demoqa.com/date-picker"
