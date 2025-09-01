@@ -165,3 +165,6 @@ def test_date_picker_page():
 
 def test_date_and_time_picker():
     base_page.open(Urls.DATE_TIME_PICKER)
+    date_picker.select_date_and_time()
+    driver.quit()
+
