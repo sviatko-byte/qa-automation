@@ -56,24 +56,3 @@ class DatePicker(BasePage):
                 break
 
         # Вибір місяця
-        self.element_is_clickable(self.DATE_ADD_TIME_MONTH).click()
-        # чекаємо поки з'являться місяці
-        months = WebDriverWait(self.driver, 10).until(
-            EC.visibility_of_all_elements_located(self.DATE_ADD_TIME_MONTH_LIST)
-        )
-        months[random_date.month - 1].click()
-
-        # Вибір дня
-        days = self.elements_are_visible(self.DATE_SELECT_DAY_LIST)
-        for day in days:
-            if day.text == str(random_date.day) and "outside-month" not in day.get_attribute("class"):
-                day.click()
-                break
-
-        # Вибір часу
-        times = self.elements_are_visible(self.DATE_ADD_TIME_LIST)
-        random_time_element = random.choice(times)
-        random_time = random_time_element.text
-        random_time_element.click()
-
-        return random_date, random_time
