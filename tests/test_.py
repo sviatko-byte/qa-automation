@@ -17,6 +17,7 @@ from pages.modal_dialogs import ModalDialogsPage
 from pages.nested_frames import NestedFramesPage
 from pages.progres_bar import ProgressBar
 from pages.slider import SliderPage
+from pages.tables import TablesPage
 from pages.widgests import Widgets
 from utils.helpers import is_file_downloaded, create_random_file, generate_random_name, generate_random_email, generate_random_mobile
 from pages.frames import Frames
@@ -41,7 +42,7 @@ auto_complete = Auto(driver)
 date_picker = DatePicker(driver)
 slider = SliderPage(driver)
 progress_bar = ProgressBar(driver)
-
+tables = TablesPage(driver)
 
 
 def test_search_and_login():
@@ -183,6 +184,12 @@ def test_progress_bar_page():
     before, after = progress_bar.progress_bar_click()
     print(before, after)
     driver.quit()
+
+def test_tabs_page():
+    base_page.open(Urls.TABLES)
+    tables.check_tabs()
+    driver.quit()
+
 
 
 
