@@ -15,6 +15,7 @@ from pages.links import LinksPage
 from pages.main_page import MainPage
 from pages.modal_dialogs import ModalDialogsPage
 from pages.nested_frames import NestedFramesPage
+from pages.slider import SliderPage
 from pages.widgests import Widgets
 from utils.helpers import is_file_downloaded, create_random_file, generate_random_name, generate_random_email, generate_random_mobile
 from pages.frames import Frames
@@ -37,6 +38,7 @@ modal_dialogs_page = ModalDialogsPage(driver)
 widgets_page = Widgets(driver)
 auto_complete = Auto(driver)
 date_picker = DatePicker(driver)
+slider = SliderPage(driver)
 
 
 
@@ -166,5 +168,11 @@ def test_date_picker_page():
 def test_date_and_time_picker():
     base_page.open(Urls.DATE_TIME_PICKER)
     date_picker.select_date_and_time()
+    driver.quit()
+
+def test_slider_page():
+    base_page.open(Urls.SLIDER)
+    before, after = slider.change_slider_value()
+    print(f"Before: {before}, After: {after}")
     driver.quit()
 
