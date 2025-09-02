@@ -180,7 +180,8 @@ def test_slider_page():
 
 def test_progress_bar_page():
     base_page.open(Urls.PROGRES_BAR)
-    progress_bar.progress_bar_click()
+    before, after = progress_bar.progress_bar_click()
+    print(before, after)
     driver.quit()
 
 
