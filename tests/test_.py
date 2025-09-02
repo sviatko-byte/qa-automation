@@ -15,6 +15,7 @@ from pages.links import LinksPage
 from pages.main_page import MainPage
 from pages.modal_dialogs import ModalDialogsPage
 from pages.nested_frames import NestedFramesPage
+from pages.progres_bar import ProgressBar
 from pages.slider import SliderPage
 from pages.widgests import Widgets
 from utils.helpers import is_file_downloaded, create_random_file, generate_random_name, generate_random_email, generate_random_mobile
@@ -39,6 +40,7 @@ widgets_page = Widgets(driver)
 auto_complete = Auto(driver)
 date_picker = DatePicker(driver)
 slider = SliderPage(driver)
+progress_bar = ProgressBar(driver)
 
 
 
@@ -175,4 +177,11 @@ def test_slider_page():
     before, after = slider.change_slider_value()
     print(f"Before: {before}, After: {after}")
     driver.quit()
+
+def test_progress_bar_page():
+    base_page.open(Urls.PROGRES_BAR)
+    progress_bar.progress_bar_click()
+    driver.quit()
+
+
 
