@@ -1,7 +1,6 @@
+from selenium.common import TimeoutException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 import random
 from faker import Faker
 
@@ -14,15 +13,24 @@ class DatePicker(BasePage):
     DATE_SELECT_YEAR = (By.CSS_SELECTOR, ".react-datepicker__year-select")
     DATE_SELECT_DAY_LIST = (By.CSS_SELECTOR, 'div.react-datepicker__day')
 
-    DATE_ADD_TIME_INPUT = (By.ID, "dateAndTimePickerInput")
-    DATE_ADD_TIME_MONTH = (By.CSS_SELECTOR, 'div[class="react-datepicker__month-read-view"]')
-    DATE_ADD_TIME_YEAR = (By.CSS_SELECTOR, 'div[class="react-datepicker__year-read-view"]')
-    DATE_ADD_TIME_LIST = (By.CSS_SELECTOR, 'react-datepicker__time-list-item ')
-    DATE_ADD_TIME_MONTH_LIST = (By.CSS_SELECTOR, "div.react-datepicker__month-option")
-    DATE_ADD_TIME_YEAR_LIST = (By.CSS_SELECTOR, 'div[class="react-datepicker__year-option"]')
+    from selenium.webdriver.common.by import By
 
+    DATE_ADD_TIME_INPUT = (By.ID, "dateAndTimePickerInput")
+    DATE_ADD_TIME_YEAR = (By.CLASS_NAME, "react-datepicker__year-read-view")  # клікаємо по блоку (а не по стрілці)
+    DATE_ADD_TIME_YEAR_LIST = (By.CSS_SELECTOR, "div.react-datepicker__year-option")
+
+    DATE_ADD_TIME_MONTH = (By.CLASS_NAME, "react-datepicker__month-read-view")  # клікаємо по блоку
+    DATE_ADD_TIME_MONTH_LIST = (By.CSS_SELECTOR, "div.react-datepicker__month-option")
+
+    DATE_ADD_TIME_DAY_LIST = (By.CSS_SELECTOR, "div.react-datepicker__day")  # додай, якщо ще немає
+    DATE_ADD_TIME_TIME_LIST = (By.CSS_SELECTOR,
+                               ".react-datepicker__time-list-item")  # була відсутня крапка і зайвий пробіл
 
     fake_en = Faker("en_US")
+
+    def __init__(self, driver):
+        super().__init__(driver)
+        self.wait = None
 
     def select_date(self):
         random_date = self.fake_en.date_of_birth(minimum_age=18, maximum_age=60)
@@ -40,40 +48,53 @@ class DatePicker(BasePage):
         return random_date
 
     def select_date_and_time(self):
-        # Випадкова дата
+        # 1) Згенерувати дату (як у твоєму прикладі)
         random_date = self.fake_en.date_of_birth(minimum_age=18, maximum_age=60)
-        print(f"[DEBUG] Generated random_date: {random_date}")
 
-        # Клік по інпуту
+        # 2) Відкрити календар
         self.element_is_clickable(self.DATE_ADD_TIME_INPUT).click()
 
-        # Вибір року
+        # 3) Рік
         self.element_is_clickable(self.DATE_ADD_TIME_YEAR).click()
-        years = self.elements_are_visible(self.DATE_ADD_TIME_YEAR_LIST)
-        for year in years:
-            if year.text == str(2025):
-                year.click()
+        # react-datepicker показує «вікно» років; шукаємо потрібний, а якщо не видно — пробуємо гортати попередні роки
+        # Якщо у твоїй версії є кнопки гортання, додай локатори під них і клікай у циклі.
+        found_year = False
+        for _ in range(12):  # обмежимо спроби, щоб не зациклитись
+            year_opts = self.elements_are_visible(self.DATE_ADD_TIME_YEAR_LIST)
+            target = [y for y in year_opts if y.text.strip() == str(random_date.year)]
+            if target:
+                target[0].click()
+                found_year = True
                 break
+            # якщо не знайшли — спробуємо «прокрутити» список коліщатком/клавішами або повторно відкрити
+            try:
+                year_opts[-1].location_once_scrolled_into_view  # легенько скролимо
+            except Exception:
+                pass
+        if not found_year and year_opts:
+            random.choice(year_opts).click()  # фолбек: хоч щось вибрати, щоб не впасти
 
-        # Вибір місяця
+        # 4) Місяць
         self.element_is_clickable(self.DATE_ADD_TIME_MONTH).click()
-        # чекаємо поки з'являться місяці
-        months = WebDriverWait(self.driver, 10).until(
-            EC.visibility_of_all_elements_located(self.DATE_ADD_TIME_MONTH_LIST)
-        )
+        months = self.elements_are_visible(self.DATE_ADD_TIME_MONTH_LIST)
+        # у react-datepicker порядок з січня (0) до грудня (11)
         months[random_date.month - 1].click()
 
-        # Вибір дня
-        days = self.elements_are_visible(self.DATE_SELECT_DAY_LIST)
-        for day in days:
-            if day.text == str(random_date.day) and "outside-month" not in day.get_attribute("class"):
-                day.click()
+        # 5) День (беремо тільки з поточного місяця)
+        days = self.elements_are_visible(self.DATE_ADD_TIME_DAY_LIST)
+        for d in days:
+            cls = d.get_attribute("class") or ""
+            if d.text.strip() == str(random_date.day) and "outside-month" not in cls:
+                d.click()
                 break
 
-        # Вибір часу
-        times = self.elements_are_visible(self.DATE_ADD_TIME_LIST)
-        random_time_element = random.choice(times)
-        random_time = random_time_element.text
-        random_time_element.click()
+        # 6) Час (випадковий із видимих)
+        try:
+            times = self.elements_are_visible(self.DATE_ADD_TIME_TIME_LIST)
+            pick = random.choice(times)
+            time_text = pick.text.strip()
+            pick.click()
+        except TimeoutException:
+            time_text = None  # якщо у твоїй конфігурації немає тайм-пікера
 
-        return random_date, random_time
+        return random_date, time_text

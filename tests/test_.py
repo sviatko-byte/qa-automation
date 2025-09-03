@@ -15,6 +15,10 @@ from pages.links import LinksPage
 from pages.main_page import MainPage
 from pages.modal_dialogs import ModalDialogsPage
 from pages.nested_frames import NestedFramesPage
+from pages.progres_bar import ProgressBar
+from pages.slider import SliderPage
+from pages.tables import TablesPage
+from pages.tool_tips import Tooltips
 from pages.widgests import Widgets
 from utils.helpers import is_file_downloaded, create_random_file, generate_random_name, generate_random_email, generate_random_mobile
 from pages.frames import Frames
@@ -37,7 +41,10 @@ modal_dialogs_page = ModalDialogsPage(driver)
 widgets_page = Widgets(driver)
 auto_complete = Auto(driver)
 date_picker = DatePicker(driver)
-
+slider = SliderPage(driver)
+progress_bar = ProgressBar(driver)
+tables = TablesPage(driver)
+tooltips = Tooltips(driver)
 
 
 def test_search_and_login():
@@ -109,6 +116,7 @@ def test_browser_window():
     browser_window.get_on_new_window_title()
 
 
+
 def test_alerts_page():
     base_page.open(Urls.ALERTS)
     alerts_text = alerts_page.check_see_alert()
@@ -165,9 +173,38 @@ def test_date_picker_page():
 
 def test_date_and_time_picker():
     base_page.open(Urls.DATE_TIME_PICKER)
+<<<<<<< HEAD
     random_date, random_time = date_picker.select_date_and_time()
     date_input_value = date_picker.element_is_visible(date_picker.DATE_ADD_TIME_INPUT).get_attribute("value")
     assert str(random_date.year) in date_input_value
     assert random_date.strftime("%B") in date_input_value
     assert str(random_date.day) in date_input_value
     assert random_time in date_input_value
+=======
+    date_picker.select_date_and_time()
+    driver.quit()
+
+def test_slider_page():
+    base_page.open(Urls.SLIDER)
+    before, after = slider.change_slider_value()
+    print(f"Before: {before}, After: {after}")
+    driver.quit()
+
+def test_progress_bar_page():
+    base_page.open(Urls.PROGRES_BAR)
+    before, after = progress_bar.progress_bar_click()
+    print(before, after)
+    driver.quit()
+
+def test_tabs_page():
+    base_page.open(Urls.TABLES)
+    tables.check_tabs()
+    driver.quit()
+
+def test_tooltips_page():
+    base_page.open(Urls.TOOL_TIPS)
+    button_text, field_text, contrary_text, section_text = tooltips.check_tool_tips()
+    print(button_text, field_text, contrary_text, section_text)
+    driver.quit()
+
+>>>>>>> cb75a2f4eeca74e64fd1a1eb0c9cb67f0d53b338

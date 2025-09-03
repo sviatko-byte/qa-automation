@@ -20,3 +20,7 @@ class Urls:
     AUTO = "https://demoqa.com/auto-complete"
     DATE_PICKER = "https://demoqa.com/date-picker"
     DATE_TIME_PICKER = "https://demoqa.com/date-picker"
+    SLIDER = "https://demoqa.com/slider"
+    PROGRES_BAR = "https://demoqa.com/progress-bar"
+    TABLES = "https://demoqa.com/tabs"
+    TOOL_TIPS = "https://demoqa.com/tool-tips"
