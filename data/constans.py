@@ -23,3 +23,4 @@ class Urls:
     SLIDER = "https://demoqa.com/slider"
     PROGRES_BAR = "https://demoqa.com/progress-bar"
     TABLES = "https://demoqa.com/tabs"
+    TOOL_TIPS = "https://demoqa.com/tool-tips"

@@ -18,6 +18,7 @@ from pages.nested_frames import NestedFramesPage
 from pages.progres_bar import ProgressBar
 from pages.slider import SliderPage
 from pages.tables import TablesPage
+from pages.tool_tips import Tooltips
 from pages.widgests import Widgets
 from utils.helpers import is_file_downloaded, create_random_file, generate_random_name, generate_random_email, generate_random_mobile
 from pages.frames import Frames
@@ -43,6 +44,7 @@ date_picker = DatePicker(driver)
 slider = SliderPage(driver)
 progress_bar = ProgressBar(driver)
 tables = TablesPage(driver)
+tooltips = Tooltips(driver)
 
 
 def test_search_and_login():
@@ -112,6 +114,7 @@ def test_browser_window():
     browser_window.click_on_new_window_btn()
     browser_window.switch_to_window(1)
     browser_window.get_on_new_window_title()
+
 
 
 def test_alerts_page():
@@ -190,6 +193,9 @@ def test_tabs_page():
     tables.check_tabs()
     driver.quit()
 
-
-
+def test_tooltips_page():
+    base_page.open(Urls.TOOL_TIPS)
+    button_text, field_text, contrary_text, section_text = tooltips.check_tool_tips()
+    print(button_text, field_text, contrary_text, section_text)
+    driver.quit()
 
