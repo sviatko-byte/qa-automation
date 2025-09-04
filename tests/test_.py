@@ -13,6 +13,7 @@ from pages.dynamic_properties_page import DynamicPropertiesPage
 from pages.form_page import FormPage
 from pages.links import LinksPage
 from pages.main_page import MainPage
+from pages.menu import MenuPage
 from pages.modal_dialogs import ModalDialogsPage
 from pages.nested_frames import NestedFramesPage
 from pages.progres_bar import ProgressBar
@@ -45,6 +46,7 @@ slider = SliderPage(driver)
 progress_bar = ProgressBar(driver)
 tables = TablesPage(driver)
 tooltips = Tooltips(driver)
+menu = MenuPage(driver)
 
 
 def test_search_and_login():
@@ -199,3 +201,7 @@ def test_tooltips_page():
     print(button_text, field_text, contrary_text, section_text)
     driver.quit()
 
+def test_menu_page():
+    base_page.open(Urls.MENU)
+    data = menu.check_menu()
+    print(data)
