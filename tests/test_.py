@@ -17,6 +17,7 @@ from pages.menu import MenuPage
 from pages.modal_dialogs import ModalDialogsPage
 from pages.nested_frames import NestedFramesPage
 from pages.progres_bar import ProgressBar
+from pages.select_menu import SelectMenu
 from pages.slider import SliderPage
 from pages.tables import TablesPage
 from pages.tool_tips import Tooltips
@@ -47,6 +48,7 @@ progress_bar = ProgressBar(driver)
 tables = TablesPage(driver)
 tooltips = Tooltips(driver)
 menu = MenuPage(driver)
+select_menu = SelectMenu(driver)
 
 
 def test_search_and_login():
@@ -205,3 +207,11 @@ def test_menu_page():
     base_page.open(Urls.MENU)
     data = menu.check_menu()
     print(data)
+
+def test_select_menu():
+    base_page.open(Urls.SELECT_MENU)
+    select_menu.select_option_by_text("Group 1, option 1")
+    select_menu.select_title_by_text("Dr.")
+    chosen_color = select_menu.select_random_color()
+    print(f"Випадковий вибраний колір: {chosen_color}")
+    driver.quit()

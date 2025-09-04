@@ -25,3 +25,4 @@ class Urls:
     TABLES = "https://demoqa.com/tabs"
     TOOL_TIPS = "https://demoqa.com/tool-tips"
     MENU = "https://demoqa.com/menu"
+    SELECT_MENU = "https://demoqa.com/select-menu"
