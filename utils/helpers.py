@@ -1,7 +1,6 @@
 import os
-import time
-import random
 import string
+import time
 
 
 def is_file_downloaded(file_path, timeout=10):
@@ -85,12 +84,9 @@ def get_random_color_name():
         "Purple",
         "Black",
         "White",
-        "Violet",
+        "Voilet",  # саме так пишеться в DemoQA
         "Indigo",
         "Magenta",
         "Aqua"
     ]
     return random.choice(colors)
-
-# приклад використання
-print(get_random_color_name())

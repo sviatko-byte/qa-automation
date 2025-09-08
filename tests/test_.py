@@ -214,4 +214,7 @@ def test_select_menu():
     select_menu.select_title_by_text("Dr.")
     chosen_color = select_menu.select_random_color()
     print(f"Випадковий вибраний колір: {chosen_color}")
+    select_menu.multiselect_drop_by_text("Red")
+    select_menu.select_car_by_name("Volvo")
     driver.quit()
+
