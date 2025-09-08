@@ -6,6 +6,7 @@ class DefaultConstants:
 
 class Urls:
     COURSEHUNTER = "https://coursehunter.net/"
+    BUTTONS = "https://demoqa.com/buttons"
     LINKS = "https://demoqa.com/links"
     DOWNLOAD = "https://demoqa.com/upload-download"
     UPLOAD = "https://demoqa.com/upload-download"

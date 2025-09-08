@@ -1,10 +1,12 @@
+from selenium.webdriver.common.by import By
+
 from pages.base_page import BasePage
 
 
 class Frames(BasePage):
-    FIRST_FRAME = 'frame1'
-    SECOND_FRAME = 'frame2'
-    TITLE_FRAME = 'sampleHeading'
+    FIRST_FRAME = (By.ID, 'frame1')
+    SECOND_FRAME = (By.ID, 'frame2')
+    TITLE_FRAME = (By.ID, 'sampleHeading')
 
     def check_frames(self, frame_num):
         if frame_num == 'frame1':

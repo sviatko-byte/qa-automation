@@ -62,7 +62,7 @@ def test_search_and_login():
 
 
 def test_different_click_on_the_buttons():
-    base_page.open('https://demoqa.com/buttons')
+    base_page.open(Urls.BUTTONS)
     buttons_page.double_click()
     buttons_page.should_display_double_click_message('You have done a double click')
     buttons_page.right_click()
@@ -82,7 +82,7 @@ def test_download():
     base_page.open(Urls.DOWNLOAD)
     download_page.click_on_download_btn()
     full_path = os.path.join(DefaultConstants.download_dir, DefaultConstants.filename)
-    assert is_file_downloaded(full_path), "❌ Файл не знайдено або не скачався!"
+    assert is_file_downloaded(full_path)
 
 
 def test_upload():
@@ -136,8 +136,8 @@ def test_alerts_page():
 
 def test_frames_page():
     base_page.open(Urls.FRAMES)
-    result_frame1 = frames_page.check_frames("frame1 ")
-    result_frame2 = frames_page.check_frames("frame2 ")
+    result_frame1 = frames_page.check_frames("frame1")
+    result_frame2 = frames_page.check_frames("frame2")
     print(result_frame1, result_frame2)
 
 def test_nested_frames_page():
@@ -172,7 +172,7 @@ def test_date_picker_page():
     date_input_value = date_picker.element_is_visible(date_picker.DATE_INPUT).get_attribute("value")
     expected_date_str = random_date.strftime("%m/%d/%Y")
     print(f"Expected: {expected_date_str}, Got from input: {date_input_value}")
-    assert date_input_value == expected_date_str, "Дата у полі не співпадає з обраною!"
+    assert date_input_value == expected_date_str
     driver.quit()
 
 def test_date_and_time_picker():
@@ -205,15 +205,13 @@ def test_tooltips_page():
 
 def test_menu_page():
     base_page.open(Urls.MENU)
-    data = menu.check_menu()
-    print(data)
+    menu.check_menu()
 
 def test_select_menu():
     base_page.open(Urls.SELECT_MENU)
     select_menu.select_option_by_text("Group 1, option 1")
     select_menu.select_title_by_text("Dr.")
-    chosen_color = select_menu.select_random_color()
-    print(f"Випадковий вибраний колір: {chosen_color}")
+    select_menu.select_random_color()
     select_menu.multiselect_drop_by_text("Red")
     select_menu.select_car_by_name("Volvo")
     driver.quit()
