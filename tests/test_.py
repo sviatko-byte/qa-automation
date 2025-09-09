@@ -1,8 +1,5 @@
 import os
 import time
-
-from pip._internal.utils import urls
-
 from data.constans import DefaultConstants, Urls
 from utils.helpers import (
     is_file_downloaded,
@@ -195,5 +192,13 @@ def test_sortable_page(pages):
     pages.base_page.open(Urls.SORTABLE)
     pages.sortable.change_list_order()
     pages.sortable.change_grid_order()
+
+def test_selectable_list(pages):
+    pages.base_page.open(Urls.SELECTABLE)
+    pages.selectable.change_list_order()
+    pages.selectable.change_grid_order()
+
+
+
 
 

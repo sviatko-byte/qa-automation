@@ -2,7 +2,6 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
-
 from pages.base_page import BasePage
 from pages.main_page import MainPage
 from pages.buttons_page import ButtonsPage
@@ -15,6 +14,7 @@ from pages.alerts import Alerts
 from pages.frames import Frames
 from pages.nested_frames import NestedFramesPage
 from pages.modal_dialogs import ModalDialogsPage
+from pages.selectable import SelectablePage
 from pages.sortable import Sortable
 from pages.widgests import Widgets
 from pages.auto_complete import Auto
@@ -25,6 +25,7 @@ from pages.tables import TablesPage
 from pages.tool_tips import Tooltips
 from pages.menu import MenuPage
 from pages.select_menu import SelectMenu
+
 
 
 # ---------- FIXTURE ДЛЯ ДРАЙВЕРА ----------
@@ -65,6 +66,8 @@ class Pages:
         self.menu = MenuPage(driver)
         self.select_menu = SelectMenu(driver)
         self.sortable = Sortable(driver)
+        self.selectable = SelectablePage(driver)
+
 
 
 # ---------- FIXTURE ДЛЯ PAGES ----------
