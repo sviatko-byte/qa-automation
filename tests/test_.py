@@ -192,6 +192,8 @@ def test_select_menu(pages):
     pages.select_menu.select_car_by_name("Volvo")
 
 def test_sortable_page(pages):
-    pages.base_page.open(urls.SORTABLE)
+    pages.base_page.open(Urls.SORTABLE)
+    pages.sortable.change_list_order()
+    pages.sortable.change_grid_order()
 
 
