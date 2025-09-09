@@ -1,5 +1,8 @@
 import os
 import time
+
+from pip._internal.utils import urls
+
 from data.constans import DefaultConstants, Urls
 from utils.helpers import (
     is_file_downloaded,
@@ -187,3 +190,8 @@ def test_select_menu(pages):
     pages.select_menu.select_random_color()
     pages.select_menu.multiselect_drop_by_text("Red")
     pages.select_menu.select_car_by_name("Volvo")
+
+def test_sortable_page(pages):
+    pages.base_page.open(urls.SORTABLE)
+
+

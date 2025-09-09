@@ -15,6 +15,7 @@ from pages.alerts import Alerts
 from pages.frames import Frames
 from pages.nested_frames import NestedFramesPage
 from pages.modal_dialogs import ModalDialogsPage
+from pages.sortable import Sortable
 from pages.widgests import Widgets
 from pages.auto_complete import Auto
 from pages.date_picker import DatePicker
@@ -63,6 +64,7 @@ class Pages:
         self.tooltips = Tooltips(driver)
         self.menu = MenuPage(driver)
         self.select_menu = SelectMenu(driver)
+        self.sortable = Sortable(driver)
 
 
 # ---------- FIXTURE ДЛЯ PAGES ----------

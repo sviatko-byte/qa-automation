@@ -27,3 +27,4 @@ class Urls:
     TOOL_TIPS = "https://demoqa.com/tool-tips"
     MENU = "https://demoqa.com/menu"
     SELECT_MENU = "https://demoqa.com/select-menu"
+    SORTABLE = "https://demoqa.com/sortable"
