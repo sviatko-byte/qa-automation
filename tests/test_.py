@@ -198,6 +198,12 @@ def test_selectable_list(pages):
     pages.selectable.change_list_order()
     pages.selectable.change_grid_order()
 
+def test_resizable_page(pages):
+    pages.base_page.open(Urls.RESIZABLE)
+    pages.resizable.change_size_resizable_box()
+    pages.resizable.change_size_resizable()
+
+
 
 
 

@@ -14,6 +14,7 @@ from pages.alerts import Alerts
 from pages.frames import Frames
 from pages.nested_frames import NestedFramesPage
 from pages.modal_dialogs import ModalDialogsPage
+from pages.resizable import ResizablePage
 from pages.selectable import SelectablePage
 from pages.sortable import Sortable
 from pages.widgests import Widgets
@@ -67,6 +68,7 @@ class Pages:
         self.select_menu = SelectMenu(driver)
         self.sortable = Sortable(driver)
         self.selectable = SelectablePage(driver)
+        self.resizable = ResizablePage(driver)
 
 
 

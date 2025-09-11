@@ -29,3 +29,4 @@ class Urls:
     SELECT_MENU = "https://demoqa.com/select-menu"
     SORTABLE = "https://demoqa.com/sortable"
     SELECTABLE = "https://demoqa.com/selectable"
+    RESIZABLE = "https://demoqa.com/resizable"
