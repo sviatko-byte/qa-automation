@@ -54,11 +54,14 @@ class Droppable(BasePage):
         return drag_div, not_greedy_inner_box, greedy_inner_box
 
     def drop_will_revert(self):
-        self.element_is_visible(self.REVERT_TAB).click()
-        will_revert_div = self.element_is_visible(self.WILL_REVERT)
-        drop_div = self.element_is_visible(self.DROP_HERE_REVERT)
-        self.action_drag_and_drop_to_element(will_revert_div, drop_div)
-        position_after_move = will_revert_div.get_attribute('style')
-        time.sleep(1)
-        position_after_revert = will_revert_div.get_attribute('style')
-        return  position_after_move, position_after_revert
+        revert_tab = self.element_is_visible(self.REVERT_TAB, timeout=10)
+        revert_tab.click()
+        self.wait_for_element_attribute(self.REVERT_TAB, "class", "active", timeout=10)
+        will_revert = self.element_is_visible(self.WILL_REVERT, timeout=10)
+        drop_zone = self.element_is_visible(self.DROP_HERE_REVERT, timeout=10)
+        self.driver.execute_script("arguments[0].scrollIntoView(true);", will_revert)
+        self.action_drag_and_drop_to_element(will_revert, drop_zone)
+        style_after_move = will_revert.get_attribute('style')
+        time.sleep(2)
+        style_after_revert = will_revert.get_attribute('style')
+        return style_after_move, style_after_revert
