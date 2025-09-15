@@ -203,6 +203,13 @@ def test_resizable_page(pages):
     pages.resizable.change_size_resizable_box()
     pages.resizable.change_size_resizable()
 
+def test_droppable_page(pages):
+    pages.base_page.open(Urls.DROPPABLE)
+    pages.droppable.drope_simple()
+    pages.droppable.drope_accept()
+    pages.droppable.drop_prevent_propogation()
+    pages.droppable.drop_will_revert()
+
 
 
 

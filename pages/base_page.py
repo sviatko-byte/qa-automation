@@ -53,3 +53,9 @@ class BasePage:
         action = ActionChains(self.driver)
         action.drag_and_drop(source, target).perform()
 
+    def wait_for_element_attribute(self, locator, attribute, value, timeout=10):
+        WebDriverWait(self.driver, timeout).until(
+            lambda driver: value in driver.find_element(*locator).get_attribute(attribute)
+        )
+
+

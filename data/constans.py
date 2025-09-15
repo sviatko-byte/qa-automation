@@ -30,3 +30,4 @@ class Urls:
     SORTABLE = "https://demoqa.com/sortable"
     SELECTABLE = "https://demoqa.com/selectable"
     RESIZABLE = "https://demoqa.com/resizable"
+    DROPPABLE = "https://demoqa.com/droppable"
