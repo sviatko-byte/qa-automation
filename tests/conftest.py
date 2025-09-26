@@ -3,6 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 from pages.base_page import BasePage
+from pages.dragabble import DragabblePage
 from pages.droppable import Droppable
 from pages.main_page import MainPage
 from pages.buttons_page import ButtonsPage
@@ -71,6 +72,7 @@ class Pages:
         self.selectable = SelectablePage(driver)
         self.resizable = ResizablePage(driver)
         self.droppable = Droppable(driver)
+        self.dragabble = DragabblePage(driver)
 
 
 

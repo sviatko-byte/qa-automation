@@ -31,3 +31,4 @@ class Urls:
     SELECTABLE = "https://demoqa.com/selectable"
     RESIZABLE = "https://demoqa.com/resizable"
     DROPPABLE = "https://demoqa.com/droppable"
+    DRAGABBLE = "https://demoqa.com/dragabble"

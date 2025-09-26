@@ -210,6 +210,12 @@ def test_droppable_page(pages):
     pages.droppable.drop_prevent_propogation()
     pages.droppable.drop_will_revert()
 
+def test_dragabble_page(pages):
+    pages.base_page.open(Urls.DRAGABBLE)
+    pages.dragabble.simple_box()
+    pages.dragabble.axis_restricted_x()
+    pages.dragabble.axis_restricted_y()
+
 
 
 
